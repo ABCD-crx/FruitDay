@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : pxl
+ Source Server         : Mysql_demo
  Source Server Type    : MySQL
- Source Server Version : 80027
- Source Host           : 1.117.140.237:3306
+ Source Server Version : 80030 (8.0.30)
+ Source Host           : localhost:3306
  Source Schema         : fruit
 
  Target Server Type    : MySQL
- Target Server Version : 80027
+ Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 10/01/2022 12:30:52
+ Date: 14/09/2023 01:04:54
 */
 
 SET NAMES utf8mb4;
@@ -23,14 +23,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `fruits`;
 CREATE TABLE `fruits`  (
   `fid` int NOT NULL,
-  `fname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `spec` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `fname` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `spec` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `up` double(255, 0) NULL DEFAULT NULL,
-  `t1` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `t2` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `t1` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
+  `t2` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
   `inum` int NULL DEFAULT NULL,
   PRIMARY KEY (`fid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of fruits
@@ -38,6 +38,8 @@ CREATE TABLE `fruits`  (
 INSERT INTO `fruits` VALUES (1, '佳沛新西兰绿奇异果', '4+2盒', 78, '产地 新西兰 销售规格 6个 商品单重 80-90g ', '储藏方法 0-4度冷藏 营养元素 维生素C、叶酸 特别提醒存放4-5天，成熟后更甜 品牌 佳沛', 3);
 INSERT INTO `fruits` VALUES (3, '枣', '2斤', 23, '185-210g', '储藏方法 0-4度冷藏 营养元素 膳食纤维，天然叶酸，VC，钙，铁', 3);
 INSERT INTO `fruits` VALUES (4, '菠萝', '1个', 59, '产地\r\n国产\r\n销售规格\r\n2斤/4斤\r\n商品单重\r\n250g以上', '储藏方法\r\n0-4度冷藏保存\r\n营养元素\r\n维生素C，果胶，纤维素', 4);
+INSERT INTO `fruits` VALUES (5, '橙子子', '一斤', 60, '产地555', '储藏方法66', 3);
+INSERT INTO `fruits` VALUES (6, '葡萄', '1000g', 60, '产地', '储藏方法', 3);
 INSERT INTO `fruits` VALUES (8, '南非青提', '2斤', 68, '产地\r\n南非\r\n销售规格\r\n2斤', '储藏方法\r\n0-4度冷藏\r\n营养元素\r\n白藜芦醇，B类维生素，花青素，钙，蛋白质，果糖', 3);
 INSERT INTO `fruits` VALUES (9, '里达葡萄', '2斤', 98, '185-210g', '储藏方法 0-4度冷藏 营养元素 维生素C、叶酸 特别提醒存放4-5天，成熟后更甜 品牌 佳沛', 4);
 INSERT INTO `fruits` VALUES (10, '墨西哥牛油果', '6个', 40, '产地 墨西哥 销售规格 6个 商品单重 140g以上 ', '储藏方法 0-4度冷藏  营养元素叶酸，钾，钙，磷', 3);
@@ -45,7 +47,6 @@ INSERT INTO `fruits` VALUES (11, '美国华盛顿红地厘蛇果', '6个', 30, '
 INSERT INTO `fruits` VALUES (12, '智利车厘子', '200g', 28, '产地：进口；包装方式：盒装', '储藏方式 0-4度冷藏 营养元素 维生素A、维生素C 高钾', 3);
 INSERT INTO `fruits` VALUES (14, '美国佛罗里达葡萄柚', '6个', 40, '产地 美国 销售规格 6个 商品单重 单个重240-310g', '储藏方法 0-4度冷藏 营养元素 膳食纤维，天然叶酸，VC，钙，铁', 3);
 INSERT INTO `fruits` VALUES (16, '赣南红心脐橙', '2斤/4斤', 49, '产地\r\n国产\r\n销售规格\r\n2斤/4斤\r\n商品单重\r\n250g以上', '储藏方法\r\n0-4度冷藏\r\n营养元素\r\n胡萝卜素，维生素C，花青素，钾，叶酸，纤维素', 3);
-INSERT INTO `fruits` VALUES (2222, '222', '222', 222, '222', '222', 222);
 
 -- ----------------------------
 -- Table structure for hotfruits
@@ -54,7 +55,7 @@ DROP TABLE IF EXISTS `hotfruits`;
 CREATE TABLE `hotfruits`  (
   `fid` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`fid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of hotfruits
@@ -78,7 +79,7 @@ CREATE TABLE `root`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `uid` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of root
@@ -93,7 +94,7 @@ CREATE TABLE `shop1`  (
   `fid` int NOT NULL,
   `isStar` tinyint(1) NOT NULL,
   `isCart` tinyint(1) NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop1
@@ -102,6 +103,35 @@ INSERT INTO `shop1` VALUES (1, 1, 1);
 INSERT INTO `shop1` VALUES (16, 0, 1);
 INSERT INTO `shop1` VALUES (9, 1, 0);
 INSERT INTO `shop1` VALUES (14, 0, 1);
+INSERT INTO `shop1` VALUES (4, 0, 1);
+
+-- ----------------------------
+-- Table structure for shop13
+-- ----------------------------
+DROP TABLE IF EXISTS `shop13`;
+CREATE TABLE `shop13`  (
+  `fid` int NOT NULL,
+  `isStar` tinyint(1) NOT NULL,
+  `isCart` tinyint(1) NOT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of shop13
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for shop14
+-- ----------------------------
+DROP TABLE IF EXISTS `shop14`;
+CREATE TABLE `shop14`  (
+  `fid` int NOT NULL,
+  `isStar` tinyint(1) NOT NULL,
+  `isCart` tinyint(1) NOT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of shop14
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for shop2
@@ -111,7 +141,7 @@ CREATE TABLE `shop2`  (
   `fid` int NOT NULL,
   `isStar` tinyint(1) NOT NULL,
   `isCart` tinyint(1) NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop2
@@ -125,7 +155,7 @@ CREATE TABLE `shop3`  (
   `fid` int NOT NULL,
   `isStar` tinyint(1) NOT NULL,
   `isCart` tinyint(1) NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop3
@@ -139,7 +169,7 @@ CREATE TABLE `shop4`  (
   `fid` int NOT NULL,
   `isStar` tinyint(1) NOT NULL,
   `isCart` tinyint(1) NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop4
@@ -153,7 +183,7 @@ CREATE TABLE `shop5`  (
   `fid` int NOT NULL,
   `isStar` tinyint(1) NOT NULL,
   `isCart` tinyint(1) NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop5
@@ -167,10 +197,26 @@ CREATE TABLE `shop6`  (
   `fid` int NOT NULL,
   `isStar` tinyint(1) NOT NULL,
   `isCart` tinyint(1) NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shop6
+-- ----------------------------
+INSERT INTO `shop6` VALUES (1, 1, 1);
+INSERT INTO `shop6` VALUES (3, 1, 0);
+
+-- ----------------------------
+-- Table structure for shop9
+-- ----------------------------
+DROP TABLE IF EXISTS `shop9`;
+CREATE TABLE `shop9`  (
+  `fid` int NOT NULL,
+  `isStar` tinyint(1) NOT NULL,
+  `isCart` tinyint(1) NOT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of shop9
 -- ----------------------------
 
 -- ----------------------------
@@ -179,17 +225,21 @@ CREATE TABLE `shop6`  (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `uname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `pwd` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `uname` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, '111@qq.com', '111', '111', 'fabian');
 INSERT INTO `user` VALUES (6, '222', '222', '222', '222');
+INSERT INTO `user` VALUES (8, 'qqqq@163.com', '15000000000', '12345', 'qqqq@163.com');
+INSERT INTO `user` VALUES (9, 'q11@qq.com', '18011112222', '1234', 'q11@qq.com');
+INSERT INTO `user` VALUES (13, '33', '44', '44', '22');
+INSERT INTO `user` VALUES (14, '77@qq.com', '13011111111', '111', '77@qq.com');
 
 SET FOREIGN_KEY_CHECKS = 1;
