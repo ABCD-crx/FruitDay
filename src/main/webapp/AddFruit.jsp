@@ -42,7 +42,7 @@
 <div class="gong" id="x5">
   <div class="con">
     <div class="form" style="margin-top: 40px;">
-      <form action="<%=request.getContextPath()%>/BSServlet?key=addfruit" method="post">
+      <form action="<%=request.getContextPath()%>/BSServlet?key=addfruit" method="post" enctype="multipart/form-data">
         <div class="add">
           <span class="add_tit">水果编号 ：</span>
           <span class="add_text"><input type="text" name="fid" id="fid" value="" /></span>
@@ -75,6 +75,11 @@
         <div class="add">
           <span class="add_tit">图片个数 ：</span>
           <span class="add_text"><input type="text" name="inum" id="inum1" value="" /></span>
+        </div>
+
+        <div class="add">
+          <span class="add_tit">上传图片 ：</span>
+          <input type="file" name="file" /></span>
         </div>
 
         <div class="add_sublmit">

@@ -6,15 +6,19 @@ import com.me.fabian.vo.Fruit;
 import com.me.fabian.vo.User;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 
 // 后台管理
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10,      // 10MB
+        maxRequestSize = 1024 * 1024 * 50   // 50MB
+)
 
 public class BSServlet extends HttpServlet {
 
@@ -111,7 +115,11 @@ public class BSServlet extends HttpServlet {
         req.getRequestDispatcher("UpFruit.jsp").forward(req, resp);
     }
 
+
     protected void doAddfruit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
         String fname = req.getParameter("fname");
         String spec = req.getParameter("spec");
         double up = Double.parseDouble(req.getParameter("up"));
@@ -122,12 +130,65 @@ public class BSServlet extends HttpServlet {
         Fruit fruit = new Fruit(fid, fname, spec, up, t1, t2, inum);
 
         boolean boo = FruitService.add(fruit);
-
         if (boo) {
+
+            // 添加照片
+            // 照片添加功能
+            String savePath = "D:\\daima\\keshe\\FruitDay\\src\\main\\webapp\\img\\fruits\\"+fid+"/"; // 指定文件保存路径，根据您的需要进行更改
+            System.out.println(savePath);
+
+            File fileSaveDir = new File(savePath);
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdir(); // 如果目录不存在，创建它
+                System.out.println("创建成功");
+            }
+
+            String fileName = "";
+            String errorMsg = "";
+
+            try {
+                for (Part part : req.getParts()) {
+                    fileName = extractFileName(part);
+                    if (!fileName.isEmpty()) {
+                        String modifiedFileName = "(1).jpg";
+                        String filePath = savePath + File.separator + modifiedFileName;
+                        part.write(filePath);
+                        System.out.println(filePath+"写入成功");
+                        break; // 只处理第一个文件
+
+                    }
+                }
+            } catch (Exception e) {
+                errorMsg = "文件上传失败: " + e.getMessage();
+            }
+
+            if (errorMsg == null || errorMsg.isEmpty()) {
+                req.setAttribute("message", "文件上传成功");
+            } else {
+                req.setAttribute("message", errorMsg);
+            }
+
+            System.out.println(errorMsg);
+
             doAllfruit(req, resp);
         } else {
             req.getRequestDispatcher("AddFruit.jsp").forward(req, resp);
         }
+
+
+
+
+    }
+
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] tokens = contentDisp.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                return token.substring(token.indexOf("=") + 2, token.length() - 1);
+            }
+        }
+        return "";
     }
 
     protected void doAllfruit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
